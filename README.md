@@ -2,9 +2,9 @@
 
 Small JS library to create truth-tables.
 
-<code>
-var truthtable = new TruthTable(['a', 'b', 'c']);<br />
-console.log(table.inputs);
-</code>
+'''javascript
+var truthtable = new TruthTable(['a', 'b', 'c']);
+console.log(truthtable.inputs);
+'''
 
 Works with all major browsers, possibly including IE6.

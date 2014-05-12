@@ -17,24 +17,22 @@
   }
 
   function combine(rowInputs, rowNo) {
-    var binValue = decimalToBinary(rowNo);
-    var lengthDiff = rowInputs.length - binValue.length;
-    for (var count = 0; count < lengthDiff; count++) {
-      binValue = '0' + binValue;
+    var col = rowInputs.length - 1;
+    while (rowNo > 0) {
+      var remainder = rowNo % 2;
+      rowNo = Math.floor(rowNo / 2);
+      rowInputs[col] = !remainder;
+      col--;
     }
-    for (var col = 0; col < rowInputs.length; col++) {
-      rowInputs[col] = (binValue[col] === '0');
+    for (; col > -1; col--) {
+      rowInputs[col] = true;
     }
-  }
-  
-  function decimalToBinary(decimal) {
-    var remainder = decimal % 2;
-    decimal /= 2;
-    return decimal >= 1 ? decimalToBinary(Math.floor(decimal)) + '' + remainder : remainder + '';
   }
 
-  function rInputs() {
-    return this.inputs.reverse();
+  function reverse() {
+    this.inputs.reverse();
+    this.outputs.reverse();
+    return this;
   }
 
   window.TruthTable = TruthTable;
