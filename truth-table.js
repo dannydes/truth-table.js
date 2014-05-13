@@ -4,7 +4,7 @@
   
   function TruthTable(variables, formula) {
     var noOfVariables = variables.length;
-    var noOfCombinations = Math.pow(noOfVariables, 2) - 1;
+    var noOfCombinations = Math.pow(2, noOfVariables);
 
     this.variables = variables;
     this.formula = formula;
@@ -36,6 +36,6 @@
   }
 
   window.TruthTable = TruthTable;
-  TruthTable.prototype.rInputs = rInputs;
+  TruthTable.prototype.reverse = reverse;
 
 })();
