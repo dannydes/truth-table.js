@@ -2,11 +2,12 @@
   
   'use strict';
   
-  function TruthTable(variables, formula) {
-    var noOfVariables = variables.length;
+  function TruthTable(formula) {
+    this.variables = parseFormula(formula).variables;
+    
+    var noOfVariables = this.variables.length;
     var noOfCombinations = Math.pow(2, noOfVariables);
-
-    this.variables = variables;
+    
     this.formula = formula;
 
     this.inputs = Array(noOfCombinations);
@@ -33,6 +34,23 @@
     this.inputs.reverse();
     this.outputs.reverse();
     return this;
+  }
+  
+  function parseFormula(formula) {
+    var match;
+    var varPattern = /\w/g;
+    var andPattern = /\(\S+\)/g;
+    var variables = [];
+    
+    while (match = varPattern.exec(formula)) {
+      if (variables.indexOf(match[0]) === -1) {
+        variables.push(match[0]);
+      }
+    }
+    
+    return {
+      variables: variables
+    };
   }
 
   window.TruthTable = TruthTable;
